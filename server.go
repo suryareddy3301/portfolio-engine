@@ -15,8 +15,8 @@ type Server struct {
 }
 
 type kv struct {
-	key   interface{}
-	value interface{}
+	Key   interface{}
+	Value interface{}
 }
 
 type BasicInfo struct {
@@ -55,11 +55,10 @@ func NewExperience() *Experience {
 }
 func NewBasicInfo() *BasicInfo {
 	details := []*kv{
-		&kv{key: "Address", value: "Bangalore, Karnataka 560102"},
-		&kv{key: "Email", value: "devcharmander@gmail.com"},
-		&kv{key: "Language", value: "English Hindi Telugu Odiya"},
-		&kv{key: "Phone", value: "(+91) 7760877384"},
-		&kv{key: "Name", value: "Surya Reddy"},
+		&kv{Key: "Email", Value: "devcharmander@gmail.com"},
+		&kv{Key: "Phone", Value: "(+91) 7760877384"},
+		&kv{Key: "Language", Value: "English, Hindi, Telugu, Odiya"},
+		&kv{Key: "Address", Value: "Bangalore, Karnataka 560102"},
 	}
 	basicInfo := &BasicInfo{
 		Name:    "Surya Reddy",
@@ -85,13 +84,13 @@ func NewServer() *Server {
 //TODO all these helper methods should read from a file and construct
 func GetSkills() []*kv {
 	entries := []*kv{
-		&kv{key: "golang", value: 70},
-		&kv{key: "javascript", value: 50},
-		&kv{key: "HTML", value: 60},
-		&kv{key: "jenkins", value: 50},
-		&kv{key: "drone.io", value: 50},
-		&kv{key: "git", value: 75},
-		&kv{key: "Agile and Scrum", value: 75},
+		&kv{Key: "golang", Value: 70},
+		&kv{Key: "javascript", Value: 50},
+		&kv{Key: "HTML", Value: 60},
+		&kv{Key: "jenkins", Value: 50},
+		&kv{Key: "drone.io", Value: 50},
+		&kv{Key: "git", Value: 75},
+		&kv{Key: "Agile and Scrum", Value: 75},
 	}
 	return entries
 }

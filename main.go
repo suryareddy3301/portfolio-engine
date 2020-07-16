@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"text/template"
@@ -10,7 +11,13 @@ import (
 
 func main() {
 	router := httprouter.New()
-	server := NewServer()
+	server, err := NewServer()
+	if err != nil {
+		server, err = CreateConfig()
+		if err != nil {
+			Error(router, err)
+		}
+	}
 	server.Router = router
 	router.ServeFiles("/static/*filepath", http.Dir("/etc/portfolio/assets"))
 	router.GET("/", server.Index)
@@ -18,7 +25,13 @@ func main() {
 }
 
 func (srv *Server) Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	//srv.Router.ServeFiles("/etc/portfolio/assets/*filepath", http.Dir("/etc/portfolio/assets"))
 	t, _ := template.ParseFiles("/etc/portfolio/assets/index.html")
 	t.Execute(w, srv)
+}
+
+func Error(router *httprouter.Router, err error) {
+	router.GET("/error", func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+		fmt.Fprint(w, err)
+	})
+
 }

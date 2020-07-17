@@ -1,48 +1,56 @@
 package main
 
 import (
-	"fmt"
 	l "log"
 	"os"
+	"os/exec"
 )
 
 type Logger struct {
-	l.Logger
+	InfoLogger    *l.Logger
+	WarningLogger *l.Logger
+	ErrorLogger   *l.Logger
 }
 
 func NewLogger() (*Logger, *os.File) {
-	file, err := os.OpenFile("portfolio.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0755)
+	logger := &Logger{}
+	f, err := os.OpenFile("/var/log/portfolio.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
-		l.Fatalf("Couldnot create a log file")
+		cmd := exec.Command("sudo", os.Args...)
+		b, err := cmd.CombinedOutput()
+		if err != nil {
+			l.Fatalf("Could not create log file. Error %v", err)
+		}
+		logger.InfoLogger.Printf("%s", b)
 	}
+	//	defer f.Close()
+	logger.InfoLogger = l.New(f, "I\t", l.LstdFlags|l.Lshortfile)
+	logger.WarningLogger = l.New(f, "W\t", l.LstdFlags|l.Lshortfile)
+	logger.ErrorLogger = l.New(f, "E\t", l.LstdFlags|l.Lshortfile)
 
-	logger := &Logger{*l.New(file, "", l.Ldate|l.Ltime)}
-	//logger.SetOutput(file)
-	return logger, file
+	return logger, f
 }
 
 func (logger *Logger) LogInfo(data interface{}) {
-	l.Println("I\t", data)
+	logger.InfoLogger.Println(data)
+}
+func (logger *Logger) LogInfof(format string, data ...interface{}) {
+	logger.InfoLogger.Printf(format, data)
 }
 
 func (logger *Logger) LogWarning(data interface{}) {
-	l.Println("W\t", data)
+	logger.WarningLogger.Println(data)
+}
+func (logger *Logger) LogWarningf(format string, data ...interface{}) {
+	logger.WarningLogger.Printf(format, data)
 }
 
 func (logger *Logger) LogError(data interface{}) {
-	l.Println("E\t", data)
+	logger.ErrorLogger.Println(data)
 }
-func (logger *Logger) LogInfof(format string, data ...interface{}) {
-	content := fmt.Sprintf(format, data)
-	l.Println("I\t", content)
-}
-
-func (logger *Logger) LogWarningf(format string, data ...interface{}) {
-	content := fmt.Sprintf(format, data)
-	l.Println("W\t", content)
-}
-
 func (logger *Logger) LogErrorf(format string, data ...interface{}) {
-	content := fmt.Sprintf(format, data)
-	l.Println("E\t", content)
+	logger.ErrorLogger.Printf(format, data)
+}
+func (logger *Logger) LogFatal(data interface{}) {
+	logger.ErrorLogger.Fatal(data)
 }

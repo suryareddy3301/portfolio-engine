@@ -8,32 +8,36 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
+const configLocation = "/etc/portfolio/"
+
 var log *Logger
 
 func main() {
-	log, f := NewLogger()
-
+	log, file := NewLogger()
+	defer file.Close()
 	router := httprouter.New()
 	log.LogInfo("Creating new server")
 	server, err := NewServer()
 	if err != nil {
-		log.LogWarningf("Could not create server from config, creating default. Error %v", err)
+		log.LogWarningf("Could not create a new server with the provide config. Error %v", err)
+		log.LogInfo("Creating default config")
 		server, err = CreateConfig()
 		if err != nil {
-			log.LogErrorf("Could not create default server instance. Error %v", err)
+			log.LogErrorf("could not create server with the default config. Error %v", err)
 			Error(router, err)
 		}
 	}
 	server.Router = router
-	router.ServeFiles("/static/*filepath", http.Dir("/etc/portfolio/assets"))
+	router.ServeFiles("/static/*filepath", http.Dir(configLocation+"assets"))
 	router.GET("/", server.Index)
-	log.LogInfo("Server started")
-	log.Fatal(http.ListenAndServe(":8080", router))
-	//	f.Close()
+
+	log.LogFatal(http.ListenAndServe(":8080", router))
+	//	defer file.Close()
+
 }
 
 func (srv *Server) Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	t, _ := template.ParseFiles("/etc/portfolio/assets/index.html")
+	t, _ := template.ParseFiles(configLocation + "assets/index.html")
 	t.Execute(w, srv)
 }
 

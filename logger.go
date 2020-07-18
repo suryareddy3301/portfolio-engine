@@ -14,7 +14,7 @@ type Logger struct {
 
 func NewLogger() (*Logger, *os.File) {
 	logger := &Logger{}
-	f, err := os.OpenFile("/var/log/portfolio.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	f, err := os.OpenFile(logLocation+"portfolio.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		cmd := exec.Command("sudo", os.Args...)
 		b, err := cmd.CombinedOutput()

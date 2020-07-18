@@ -11,13 +11,19 @@ import (
 
 type Server struct {
 	Router         *httprouter.Router `yaml:"router,omitempty"`
-	ProfileImage   string
+	Theme          *Theme
 	About          string
 	Skills         []*kv
 	Experience     []*Experience
 	BasicInfo      *BasicInfo
 	SocialNetworks []*kv
 	Education      []*Education
+}
+
+type Theme struct {
+	Name            string
+	ProfileImage    string
+	BackgroundImage string
 }
 
 type kv struct {

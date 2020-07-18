@@ -14,7 +14,7 @@ func CreateConfig() (*Server, error) {
 		SocialNetworks: getSocilaNetworks(),
 		Education:      getEducation(),
 		Experience:     newExperience(),
-		ProfileImage:   "SURYA.jpg",
+		Theme:          getTheme(),
 	}
 
 	file, err := os.OpenFile("config.yaml", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0755)
@@ -33,7 +33,14 @@ func CreateConfig() (*Server, error) {
 	return server, nil
 }
 
-//TODO all these helper methods should read from a file and construct
+func getTheme() *Theme {
+	return &Theme{
+		Name:            "main",
+		BackgroundImage: "cc-bg-11.jpg",
+		ProfileImage:    "SURYA.jpg",
+	}
+}
+
 func getSkills() []*kv {
 	entries := []*kv{
 		&kv{Key: "golang", Value: "70%"},

@@ -1,5 +1,9 @@
+theme:
+  name: main
+  profileimage: SURYA.jpg
+  backgroundimage: cc-bg-11.jpg
 profileimage: SURYA.jpg
-about: Software Developer with n years of experience ...
+about: Software Developer with 7 years of experience blah blah
 skills:
 - key: golang
   value: 70%
@@ -17,38 +21,38 @@ skills:
   value: 75%
 experience:
 - date: 2020 - Present
-  company: Company 1
+  company: Persistent Systems
   designation: Project Lead
   description: Euismod massa scelerisque suspendisse fermentum habitant vitae ullamcorper magna quam iaculis, tristique sapien taciti mollis interdum sagittis libero nunc inceptos tellus, hendrerit vel eleifend primis lectus quisque cubilia sed mauris. Lacinia porta vestibulum diam integer quisque eros pulvinar curae, curabitur feugiat arcu vivamus parturient aliquet laoreet at, eu etiam pretium molestie ultricies sollicitudin dui.
 - date: 2016 - 2020
-  company: Company 2
+  company: DevOn
   designation: Senior Principal Development Specialist
   description: Euismod massa scelerisque suspendisse fermentum habitant vitae ullamcorper magna quam iaculis, tristique sapien taciti mollis interdum sagittis libero nunc inceptos tellus, hendrerit vel eleifend primis lectus quisque cubilia sed mauris. Lacinia porta vestibulum diam integer quisque eros pulvinar curae, curabitur feugiat arcu vivamus parturient aliquet laoreet at, eu etiam pretium molestie ultricies sollicitudin dui.
 - date: 2013 - 2016
-  company: Company 3
+  company: Mindtree
   designation: Senior Software Engineer
   description: Euismod massa scelerisque suspendisse fermentum habitant vitae ullamcorper magna quam iaculis, tristique sapien taciti mollis interdum sagittis libero nunc inceptos tellus, hendrerit vel eleifend primis lectus quisque cubilia sed mauris. Lacinia porta vestibulum diam integer quisque eros pulvinar curae, curabitur feugiat arcu vivamus parturient aliquet laoreet at, eu etiam pretium molestie ultricies sollicitudin dui.
 basicinfo:
-  name: Your Name
+  name: Surya Reddy
   details:
   - key: Email
-    value: youremail@domain.com
+    value: devcharmander@gmail.com
   - key: Phone
-    value: (+00) 123456789
+    value: (+91) 7760877384
   - key: Address
-    value: City, State ZIP
+    value: Bangalore, Karnataka 560102
 socialnetworks:
 - key: github
-  value: https://github.com
+  value: https://github.com/suryareddy3301
 - key: linkedin
-  value: https://linkedin.com
+  value: https://github.com/suryareddy3301
 - key: instagram
-  value: https://instagram.com
+  value: https://github.com/suryareddy3301
 - key: medium
-  value: https://medium.com
+  value: https://github.com/suryareddy3301
 education:
 - date: 2008 - 2012
-  institutionname: Your University Name
+  institutionname: Biju Pattnaik University Of Technology
   speciality: Bachelor of Information Technology
   degree: Bachelor's Degree
   description: Habitasse venenatis commodo tempor eleifend arcu sociis sollicitudin ante pulvinar ad, est porta cras erat ullamcorper volutpat metus duis platea convallis, tortor primis ac quisque etiam luctus nisl nullam fames. Ligula purus suscipit tempus nascetur curabitur donec nam ullamcorper, laoreet nullam mauris dui aptent facilisis neque elementum ac, risus semper felis parturient fringilla rhoncus eleifend.

@@ -10,7 +10,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="static/css/aos.css" rel="stylesheet">
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="static/styles/main.css" rel="stylesheet">
+    <link href="static/styles/{{.Theme.Name}}.css" rel="stylesheet">
   </head>
   <body id="top">
     <header>
@@ -38,10 +38,10 @@
         <div class="profile-page">
           <div class="wrapper">
             <div class="page-header page-header-small" filter-color="green">
-              <div class="page-header-image" data-parallax="true" style="background-image: url('static/images/cc-bg-1.jpg');"></div>
+              <div class="page-header-image" data-parallax="true" style="background-image: url('static/images/{{.Theme.BackgroundImage}}');"></div>
               <div class="container">
                 <div class="content-center">
-                  <div class="cc-profile-image"><a href="#"><img src="static/images/{{.ProfileImage}}" alt="Image"/></a></div>
+                  <div class="cc-profile-image"><a href="#"><img src="static/images/{{.Theme.ProfileImage}}" alt="Image"/></a></div>
                   <div class="h2 title">{{.BasicInfo.Name}}</div>
                   <p class="category text-white">{{.About}}</p><a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Hire Me</a><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Download CV</a>
                 </div>
@@ -118,10 +118,6 @@
                       <div class="col-sm-4"><strong class="text-uppercase">Language:</strong></div>
                       <div class="col-sm-8">English, German, French</div>
                     </div>
-                 
-                 
-                 
-                 
                  
                   </div> -->
                 </div>

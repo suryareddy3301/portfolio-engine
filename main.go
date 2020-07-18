@@ -2,15 +2,37 @@ package main
 
 import (
 	"fmt"
+	l "log"
 	"net/http"
+	"os"
+	"runtime"
 	"text/template"
 
 	"github.com/julienschmidt/httprouter"
 )
 
-const configLocation = "/etc/portfolio/"
+var configLocation, logLocation string
+
+//const configLocation = "/etc/portfolio/"
 
 var log *Logger
+
+func init() {
+	if runtime.GOOS == "windows" {
+		err := os.MkdirAll("C:/portfolio/config/", os.ModePerm)
+		if err != nil {
+			l.Fatal(err)
+		}
+		err = os.MkdirAll("C:/portfolio/logs/", os.ModePerm)
+		if err != nil {
+			l.Fatal(err)
+		}
+		//configLocation, logLocation = "C:/portfolio/config/", "C:/portfolio/logs/"
+		configLocation, logLocation = "", "C:/portfolio/logs/"
+	} else {
+		configLocation, logLocation = "/etc/portfolio/", "/var/log/"
+	}
+}
 
 func main() {
 	log, file := NewLogger()
